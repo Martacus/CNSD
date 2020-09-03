@@ -1,11 +1,11 @@
 package com.mart.SpringBoot.models;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.validation.constraints.NotBlank;
 import java.util.UUID;
 
 public class Account {
 
+    @NotBlank(message = "Name is mandatory")
     private String name;
     private UUID id;
 

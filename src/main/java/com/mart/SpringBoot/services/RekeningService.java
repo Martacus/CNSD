@@ -26,13 +26,32 @@ public class RekeningService {
             List<Rekening> rekeningen = accountsRekeningen.get(optionalAccount.get());
             rekeningen.add(rekening);
             addRekening(rekening, optionalAccount.get());
-            return;
         } else {
             List<Rekening> rekeningList = new ArrayList<>();
             rekeningList.add(rekening);
             accountsRekeningen.put(account, rekeningList);
             addRekening(rekening, account);
         }
+    }
+
+    public void addAccountToRekening(Account account, String rekeningId){
+        Optional<Rekening> optionalRekening = getRekening(rekeningId);
+        optionalRekening.ifPresent(rekening -> addNewAccount(account, rekening));
+    }
+
+    public void removeAccountFromRekening(Account account, String rekeningId){
+        Optional<Account> optionalAccount = accountsRekeningen.keySet().stream()
+                .filter(rekenings -> rekenings.getId().equals(account.getId()))
+                .findFirst();
+
+        if(optionalAccount.isPresent()){
+            List<Rekening> accountRekeningen = this.accountsRekeningen.get(optionalAccount.get());
+            Optional<Rekening> optionalRekening = getRekening(rekeningId);
+            optionalRekening.ifPresent(accountRekeningen::remove);
+            this.accountsRekeningen.put(optionalAccount.get(), accountRekeningen);
+        }
+
+
     }
 
     public void addRekening(Rekening rekening, Account account){
@@ -80,13 +99,5 @@ public class RekeningService {
                 .filter(rekening -> rekening.getId().equals(UUID.fromString(uuid)))
                 .findFirst();
     }
-//
-//    public void addSaldo(String id, int saldo){
-//        for (Rekening r : rekeningen){
-//            if(r.getId().toString().equals(id)){
-//                r.setSaldo(r.getSaldo() + saldo);
-//            }
-//        }
-//    }
 
 }
