@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class Rekening {
+public class RekeningOld {
 
     private UUID id;
     private int saldo;
     private boolean locked;
 
-    public Rekening(){
+    public RekeningOld(){
         this.id = UUID.randomUUID();
         this.saldo = 0;
     }
 
-    public Rekening(String s){
+    public RekeningOld(String s){
         this.id = UUID.fromString(s);
         this.saldo = 0;
     }

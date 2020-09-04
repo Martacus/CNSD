@@ -1,28 +1,37 @@
 package com.mart.SpringBoot.models;
 
-import javax.validation.constraints.NotBlank;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
+@Entity
+@Table(name = "account")
 public class Account {
-
-    @NotBlank(message = "Name is mandatory")
-    private String name;
+    @Id
     private UUID id;
+    private int saldo;
+    private boolean locked;
 
-    public Account(){
-        this.id = UUID.randomUUID();
+    @ManyToMany
+    private Set<User> users = new HashSet<>();
+
+
+
+    public int getSaldo() {
+        return saldo;
     }
 
-    public UUID getId() {
-        return id;
+    public void setSaldo(int saldo) {
+        this.saldo = saldo;
     }
 
-    public String getName() {
-        return name;
+    public boolean isLocked() {
+        return locked;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLocked(boolean locked) {
+        this.locked = locked;
     }
 
 }
