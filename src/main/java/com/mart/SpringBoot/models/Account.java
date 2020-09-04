@@ -18,6 +18,10 @@ public class Account {
     private int saldo;
     private boolean locked;
 
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL)
     private Set<User> users = new HashSet<>();
+
+    public void addUser(User user){
+        this.users.add(user);
+    }
 }

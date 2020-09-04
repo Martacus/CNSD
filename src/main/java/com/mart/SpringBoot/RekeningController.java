@@ -30,8 +30,12 @@ public class RekeningController {
 
     public RekeningController(RekeningService service, AccountRepository accounRepository, UserRepository userRepository) {
         this.service = service;
-        accounRepository.save(new Account());
-        userRepository.save(new User());
+        Account account = new Account();
+        User user = new User();
+        account.addUser(user);
+        user.addAccount(account);
+        accounRepository.save(account);
+        userRepository.save(user);
     }
 
     @GetMapping("/rekening")

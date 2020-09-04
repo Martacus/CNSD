@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -16,7 +17,10 @@ public class User {
     private UUID id;
     private String name;
 
-    @ManyToMany
-    private Set<Account> accounts;
+    @ManyToMany(cascade=CascadeType.ALL)
+    private Set<Account> accounts = new HashSet<>();
 
+    public void addAccount(Account account){
+        this.accounts.add(account);
+    }
 }
