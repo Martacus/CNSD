@@ -1,13 +1,19 @@
 package com.mart.SpringBoot;
 
+import com.mart.SpringBoot.models.Account;
 import com.mart.SpringBoot.models.AccountOld;
 import com.mart.SpringBoot.models.RekeningOld;
+import com.mart.SpringBoot.models.User;
+import com.mart.SpringBoot.services.AccountRepository;
 import com.mart.SpringBoot.services.RekeningService;
+import com.mart.SpringBoot.services.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
@@ -18,8 +24,14 @@ public class RekeningController {
 
     private final RekeningService service;
 
-    public RekeningController(RekeningService service) {
+    @PersistenceContext
+    EntityManager entityManager;
+
+
+    public RekeningController(RekeningService service, AccountRepository accounRepository, UserRepository userRepository) {
         this.service = service;
+        accounRepository.save(new Account());
+        userRepository.save(new User());
     }
 
     @GetMapping("/rekening")
@@ -40,6 +52,10 @@ public class RekeningController {
 
     @PostMapping("/rekening")
     public AccountOld postRekening(@Valid @RequestBody AccountOld account){
+        Account newAccount = new Account();
+        entityManager.getTransaction().begin();
+        entityManager.persist(newAccount);
+        entityManager.getTransaction().commit();
         service.addNewAccount(account, new RekeningOld());
         return account;
     }
