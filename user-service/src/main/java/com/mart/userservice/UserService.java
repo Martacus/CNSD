@@ -10,6 +10,8 @@ import java.util.Random;
 @Service
 public class UserService {
 
+
+
     @HystrixCommand(fallbackMethod = "defaultName")
     public String getName(){
         int i = new Random().nextInt(10) + 1;
@@ -23,5 +25,4 @@ public class UserService {
     private String defaultName(){
         return "Marry";
     }
-
 }
