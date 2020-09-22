@@ -9,6 +9,3 @@ phases:
     commands:
       - echo Build completed on `date`
       - mvn package
-artifacts:
-  files:
-    - target/testbuild01.jar
