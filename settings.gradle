@@ -1,0 +1,3 @@
+rootProject.name = 'les2-1-2'
+include 'producer1'
+
