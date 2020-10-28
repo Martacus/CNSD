@@ -1,9 +1,9 @@
 package com.mart.les.controller;
 
-import com.amazonaws.services.s3.model.CannedAccessControlList;
-import com.amazonaws.services.s3.model.DeleteObjectRequest;
-import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.sqs.AmazonSQS;
+import com.amazonaws.services.sqs.model.Message;
+import com.amazonaws.services.sqs.model.ReceiveMessageRequest;
+import com.amazonaws.services.sqs.model.SendMessageRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,10 +14,9 @@ import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Date;
+import java.util.Base64;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -44,11 +43,46 @@ public class SQSController {
     }
 
     @PostMapping(value = "/test", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-    public String gg(@RequestParam MultipartFile file){
-        return amazonSQSClient.sendMessage();
-        //Message message = queueMessagingTemplate.receive(sqsEndpoint);
-        //log.info("Recieved Message {}", message.getPayload().toString());
+    public void gg(@RequestParam MultipartFile file) throws IOException {
+        final SendMessageRequest myMessageRequest =
+                new SendMessageRequest(sqsEndpoint, Base64.getEncoder().encodeToString(file.getBytes()));
+        amazonSQSClient.sendMessage(myMessageRequest);
     }
+
+    @GetMapping("consume")
+    public void consumeMessage(){
+        try{
+            final ReceiveMessageRequest receiveMessageRequest = new ReceiveMessageRequest(sqsEndpoint);
+            List<Message> messages = amazonSQSClient.receiveMessage(receiveMessageRequest).getMessages();
+            if(messages != null){
+                for(Message message : messages){
+                    LOG.info("Recieved message from {}", sqsEndpoint + " " + message.getBody());
+                }
+                LOG.info("Recieved message from {}", sqsEndpoint);
+            } else {
+                LOG.info("No message from {}", sqsEndpoint);
+            }
+        } catch (Exception e){
+            LOG.info("Exception from {}", sqsEndpoint);
+            LOG.info(e.getMessage());
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //    private File convertMultiPartToFile(MultipartFile file) throws IOException {
 //        File convFile = new File(file.getOriginalFilename());

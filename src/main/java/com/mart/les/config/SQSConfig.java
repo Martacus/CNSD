@@ -58,7 +58,9 @@ public class SQSConfig {
                                 .withCredentials(new AWSStaticCredentialsProvider(new BasicSessionCredentials(awsAccessKey, awsSecretKey, awsSessionToken))
                                 ).build(), "martles212");
 
-        return new AmazonSQSExtendedClient(AmazonSQSClientBuilder.defaultClient(), extendedClientConfig);
+        return new AmazonSQSExtendedClient(AmazonSQSClientBuilder.standard().withRegion(Regions.US_EAST_1).withCredentials(new AWSStaticCredentialsProvider(
+                new BasicSessionCredentials(awsAccessKey, awsSecretKey, awsSessionToken)))
+                .build(), extendedClientConfig);
     }
 
 
