@@ -5,11 +5,7 @@ phases:
    python: 3.8
  build: 
   commands:
-   - sam build
-   - export BUCKET=martles212
-   - sam package --s3-bucket $BUCKET --output-template-file outputtemplate.yml
+   - zip -g output.zip /src/lambda_function.py
 artifacts:
- type: zip
  files:
-  - template.yml
-  - outputtemplate.yml
+  - output.zip
