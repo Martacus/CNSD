@@ -1,0 +1,10 @@
+{
+  "simulation": "cddb.ptest.simulations.GetTracksSimulation",
+  "simulationId": "gettrackssimulation",
+  "start": 1606916024267,
+  "description": "",
+  "scenarios": ["Get all tracks"],
+  "assertions": [
+
+  ]
+}

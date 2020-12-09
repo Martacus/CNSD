@@ -1,0 +1,10 @@
+{
+  "simulation": "cddb.ptest.simulations.ConcurrentScenariosSimulation",
+  "simulationId": "concurrentscenariossimulation",
+  "start": 1606915249000,
+  "description": "",
+  "scenarios": ["Create, edit and delete an album", "Get all albums"],
+  "assertions": [
+
+  ]
+}

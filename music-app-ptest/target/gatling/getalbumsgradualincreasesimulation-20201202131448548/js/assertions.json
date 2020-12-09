@@ -1,0 +1,10 @@
+{
+  "simulation": "cddb.ptest.simulations.GetAlbumsGradualIncreaseSimulation",
+  "simulationId": "getalbumsgradualincreasesimulation",
+  "start": 1606914888548,
+  "description": "",
+  "scenarios": ["Get all albums"],
+  "assertions": [
+
+  ]
+}

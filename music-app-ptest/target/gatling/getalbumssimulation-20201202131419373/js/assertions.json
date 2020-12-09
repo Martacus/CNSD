@@ -1,0 +1,10 @@
+{
+  "simulation": "cddb.ptest.simulations.GetAlbumsSimulation",
+  "simulationId": "getalbumssimulation",
+  "start": 1606914859373,
+  "description": "",
+  "scenarios": ["Get all albums"],
+  "assertions": [
+
+  ]
+}

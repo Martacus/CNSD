@@ -1,0 +1,10 @@
+{
+  "simulation": "cddb.ptest.simulations.CreateEditAndDeleteAlbumSimulation",
+  "simulationId": "createeditanddeletealbumsimulation",
+  "start": 1606915162900,
+  "description": "",
+  "scenarios": ["Create, edit and delete an album"],
+  "assertions": [
+
+  ]
+}

@@ -1,0 +1,31 @@
+RUN	cddb.ptest.simulations.GetTracksSimulation	gettrackssimulation	1606915904903	 	3.3.1
+ERROR	get tracks: Failed to build request: No attribute named 'albumid' is defined 	1606915906214
+USER	Get all tracks	1	END	1606915906204	1606915906226
+USER	Get all tracks	1	START	1606915906204	1606915906204
+ERROR	get tracks: Failed to build request: No attribute named 'albumid' is defined 	1606915907216
+USER	Get all tracks	2	START	1606915907216	1606915907216
+USER	Get all tracks	2	END	1606915907216	1606915907217
+ERROR	get tracks: Failed to build request: No attribute named 'albumid' is defined 	1606915908214
+USER	Get all tracks	3	START	1606915908214	1606915908214
+USER	Get all tracks	3	END	1606915908214	1606915908214
+ERROR	get tracks: Failed to build request: No attribute named 'albumid' is defined 	1606915909197
+USER	Get all tracks	4	START	1606915909197	1606915909197
+USER	Get all tracks	4	END	1606915909197	1606915909198
+ERROR	get tracks: Failed to build request: No attribute named 'albumid' is defined 	1606915910207
+USER	Get all tracks	5	START	1606915910207	1606915910207
+USER	Get all tracks	5	END	1606915910207	1606915910208
+ERROR	get tracks: Failed to build request: No attribute named 'albumid' is defined 	1606915911208
+USER	Get all tracks	6	START	1606915911207	1606915911207
+USER	Get all tracks	6	END	1606915911207	1606915911208
+ERROR	get tracks: Failed to build request: No attribute named 'albumid' is defined 	1606915912206
+USER	Get all tracks	7	START	1606915912205	1606915912205
+USER	Get all tracks	7	END	1606915912205	1606915912206
+ERROR	get tracks: Failed to build request: No attribute named 'albumid' is defined 	1606915913209
+USER	Get all tracks	8	START	1606915913208	1606915913208
+USER	Get all tracks	8	END	1606915913208	1606915913209
+ERROR	get tracks: Failed to build request: No attribute named 'albumid' is defined 	1606915914196
+USER	Get all tracks	9	START	1606915914195	1606915914195
+USER	Get all tracks	9	END	1606915914195	1606915914196
+ERROR	get tracks: Failed to build request: No attribute named 'albumid' is defined 	1606915915204
+USER	Get all tracks	10	START	1606915915204	1606915915204
+USER	Get all tracks	10	END	1606915915204	1606915915205
